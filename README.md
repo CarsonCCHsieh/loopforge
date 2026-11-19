@@ -6,6 +6,8 @@ Aim a projectile through moving rings, use wall banks, and reach another ring be
 
 ## Play
 
+[Play in your browser](https://microusada.com/loopforge/) · [Project overview](https://microusada.com/demos/loopforge/?lang=en) · [87.5-second demonstration](https://youtu.be/b4bMbVIORqI)
+
 Open `index.html` in a desktop browser. The game is plain HTML, CSS and JavaScript with no install or build step. Static hosting only needs `index.html`, `styles.css`, `controls.css`, `engine.js`, and `app.js`.
 
 1. Choose **Play 45 seconds**, or **Try without a timer**.
