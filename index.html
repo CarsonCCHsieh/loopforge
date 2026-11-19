@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>LOOPFORGE · Catch a line. Build a chain.</title>
+    <meta name="description" content="A 45-second original browser arcade. Aim through rings, build a chain and bank off walls. English interface; no account or saved player data.">
+    <link rel="canonical" href="https://microusada.com/loopforge/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="LOOPFORGE · Catch a line. Build a chain.">
+    <meta property="og:description" content="A 45-second original browser arcade. Aim through rings, build a chain and bank off walls. English interface; no account or saved player data.">
+    <meta property="og:url" content="https://microusada.com/loopforge/">
+    <meta property="og:image" content="https://microusada.com/assets/covers/loopforge.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%2311191b%27/%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2718%27 fill=%27none%27 stroke=%27%23d9ff67%27 stroke-width=%276%27/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="controls.css">
+</head>
+<body>
+<main class="shell">
+    <header class="masthead">
+        <a class="wordmark" href="#game" aria-label="Loopforge game"><span class="mark" aria-hidden="true">↗</span>LOOPFORGE<span
+                class="edition">01</span></a>
+        <p class="strap">A small shot.<br>A very good chain.</p>
+        <button id="sound" class="quiet" type="button" aria-pressed="false">Sound off</button>
+    </header>
+    <section class="game-layout" id="game" aria-label="Loopforge arcade">
+        <div class="stage-wrap">
+            <div class="scorebar">
+                <div><span class="eyebrow">SCORE</span><strong id="score">0000</strong></div>
+                <div class="chain-readout"><span class="eyebrow">BEST CHAIN</span><strong
+                        id="chain">0<span>×</span></strong></div>
+                <div class="timer"><span class="eyebrow" id="clock-label">SECONDS</span><strong id="clock">45</strong>
+                </div>
+            </div>
+            <div class="arena">
+                <canvas id="field" width="760" height="600" tabindex="0" role="application"
+                        aria-label="Aim with arrow keys. Hold and release Space to launch. P pauses."
+                        aria-describedby="controls"></canvas>
+                <div class="splash" id="splash">
+                    <div class="splash-inner">
+                        <span class="eyebrow accent">THE 45-SECOND CHAIN REACTION</span>
+                        <h1>One shot.<br><em>Keep it going.</em></h1>
+                        <p>Thread the rings. Bank off the walls.<br>Every ring in the same shot is worth more.</p>
+                        <div class="start-actions">
+                            <button class="primary" id="start" type="button">Play 45 seconds <span
+                                    aria-hidden="true">↗</span></button>
+                            <button class="text-button" id="practice" type="button">Try without a timer</button>
+                        </div>
+                        <span class="splash-note">Pointer, keyboard, or the throw controls below.</span>
+                    </div>
+                </div>
+                <div class="pause-screen" id="pause-screen" hidden><span class="eyebrow">TAKE YOUR TIME</span>
+                    <h2>Paused.</h2>
+                    <button id="resume" class="primary" type="button">Back to the rings</button>
+                </div>
+                <div class="results" id="results" hidden>
+                    <span class="eyebrow accent">THAT'S YOUR ROUND</span>
+                    <h2 id="rank">A good spark.</h2><strong id="final-score">0</strong>
+                    <p id="final-summary"></p>
+                    <button id="retry" class="primary" type="button">One more round <span aria-hidden="true">↗</span>
+                    </button>
+                    <button id="end-practice" class="text-button" type="button">Practice the bank shot</button>
+                </div>
+                <div class="shot-message" id="shot-message" aria-hidden="true">Find your line.</div>
+            </div>
+            <div class="controls-panel" aria-label="Throw controls">
+                <div class="sliders">
+                    <label for="angle">Angle
+                        <output id="angle-value" for="angle">−90°</output>
+                        <input id="angle" type="range" min="-165" max="-15" step="1" value="-90" disabled></label>
+                    <label for="power-level">Power
+                        <output id="power-value" for="power-level">60%</output>
+                        <input id="power-level" type="range" min="0" max="100" step="5" value="60" disabled></label>
+                </div>
+                <div class="launch-row">
+                    <button id="fire" class="primary" type="button" disabled>Launch shot <span
+                            aria-hidden="true">↗</span></button>
+                    <button id="restart" class="quiet" type="button" disabled>Restart</button>
+                    <button id="pause" class="quiet" type="button" disabled>Pause <kbd>P</kbd></button>
+                </div>
+                <div class="lower-bar">
+                    <div class="power"><span class="eyebrow" id="power-label">READY TO THROW</span>
+                        <div class="power-track"><span id="power-fill"></span></div>
+                    </div>
+                    <button id="timed" class="quiet" type="button" hidden>45s round</button>
+                </div>
+            </div>
+        </div>
+        <aside class="notes">
+            <span class="eyebrow">THE LITTLE FIELD GUIDE</span>
+            <h2>Make a line.<br><span>Make it count.</span></h2>
+            <ol>
+                <li><span class="step-no">01</span>
+                    <div><h3>Find your angle</h3>
+                        <p>Move your pointer. The dotted arc shows exactly where your shot will go.</p></div>
+                </li>
+                <li><span class="step-no">02</span>
+                    <div><h3>Hold. Then let go.</h3>
+                        <p>A quick tap works too. A longer hold gives your shot more reach.</p></div>
+                </li>
+                <li><span class="step-no">03</span>
+                    <div><h3>Go for the extra ring</h3>
+                        <p>Chain rings for bigger points. A wall bounce adds a bonus to the next catches.</p></div>
+                </li>
+            </ol>
+            <div class="score-guide"><span class="ring-icon" aria-hidden="true"></span>
+                <p><b>100 → 200 → 300…</b><br>per ring in one shot<br><span>+50 for a center hit · +75 per bank</span>
+                </p></div>
+            <p class="keyboard" id="controls"><kbd>←</kbd><kbd>→</kbd> Aim &nbsp; <kbd>Space</kbd> Hold /
+                release<br><kbd>P</kbd> Pause &nbsp; <kbd>Esc</kbd> Cancel charge</p>
+            <p class="small-print">A new original arcade experiment.<br>All shapes and sounds made for this game.<br>No
+                account. No uploads. No saved player data.</p>
+        </aside>
+    </section>
+    <footer><a class="quiet" href="https://microusada.com/?lang=en#works">MICROUSADA · All projects</a><span>BY CC · ARCADE DEMO · v0.1<br><a href="https://github.com/CarsonCCHsieh/loopforge/blob/main/LICENSE" class="quiet">MIT License · © 2026 CC Hsieh</a></span></footer>
+    <div class="sr-only" id="live" role="status" aria-live="polite"></div>
+</main>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

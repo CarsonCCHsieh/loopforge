@@ -1,0 +1,12 @@
+<profile version="1.0">
+  <option name="myName" value="LOOPFORGE local code review" />
+  <inspection_tool class="JSUnusedLocalSymbols" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="JSUnusedAssignment" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="JSUnresolvedReference" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="JSPotentiallyInvalidConstructorUsage" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="JSPotentiallyInvalidTargetOfIndexedPropertyAccess" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="JSDuplicatedDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="JSDuplicateCaseLabel" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="UnreachableCodeJS" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="DuplicateConditionJS" enabled="true" level="WARNING" enabled_by_default="true" />
+</profile>

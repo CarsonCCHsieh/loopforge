@@ -1,0 +1,93 @@
+/* Visible controls are a full alternative to pointer drag or held keys. */
+.controls-panel {
+    padding-top: 17px;
+}
+
+.sliders {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.sliders label {
+    min-width: 0;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.sliders output {
+    float: right;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+}
+
+.sliders input {
+    display: block;
+    width: 100%;
+    height: 28px;
+    margin: 7px 0;
+    accent-color: var(--lime);
+    cursor: pointer;
+}
+
+.sliders input:disabled {
+    opacity: .35;
+    cursor: default;
+}
+
+.sliders input:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 3px;
+}
+
+.launch-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 7px;
+}
+
+.launch-row .primary {
+    flex: 1;
+}
+
+.launch-row .quiet {
+    min-width: 70px;
+}
+
+.power {
+    min-width: 60px;
+}
+
+@media (max-width: 760px) {
+    .splash p {
+        margin: 10px 0;
+        line-height: 1.45;
+    }
+
+    .splash .start-actions {
+        margin-top: 12px;
+        gap: 6px;
+    }
+
+    .splash-note {
+        display: none;
+    }
+
+    .sliders {
+        gap: 20px;
+    }
+
+    .launch-row .quiet {
+        padding: 10px;
+        min-width: 64px;
+    }
+
+    .controls-panel {
+        padding-top: 12px;
+    }
+
+    .lower-bar {
+        padding-top: 12px;
+    }
+}
